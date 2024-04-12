@@ -31,7 +31,7 @@ var ACM = require("@aws-sdk/client-acm"); //missing package //udpate working
 var APIGateway = require ("@aws-sdk/client-api-gateway"); //update working
 var Appflow = require ("@aws-sdk/client-appflow"); //missing package //not working //update working
 var AppMesh = require ("@aws-sdk/client-app-mesh"); //update working
-var AppRunner = require ("@aws-sdk/client-apprunner"); //apprunner works //update working
+var AppRunner = require ("@aws-sdk/client-apprunner"); //update working
 var Athena = require ("@aws-sdk/client-athena"); //update working
 var AuditManager = require ("@aws-sdk/client-auditmanager"); //update UNKOWN Results
 var AutoScaling = require ("@aws-sdk/client-auto-scaling");//update appTierIamRole hit call 2! new call 357 //no results
@@ -50,30 +50,30 @@ var CognitoIdentityServiceProvider = require("@aws-sdk/client-cognito-identity-p
 var Comprehend = require("@aws-sdk/client-comprehend") //update worked
 var ComputeOptimizer = require("@aws-sdk/client-compute-optimizer") //update UNKNOWN status for compute optimizer
 var ConfigService = require("@aws-sdk/client-config-service") //update working
-var ClientConnect = require ("@aws-sdk/client-connect"); //not sure what uses this
-//no sdk for connect
-//no sdk for DevOpsGuru
-//no sdk for DMS
-//no sdk for DocDB
-var DynamoDB = require ("@aws-sdk/client-dynamodb"); //notworking //no sdk for DAXClusterEncryption
-var EC2 = require('@aws-sdk/client-ec2'); //followup calls failed
-//no sdk for ECR
-var ECS = require ("@aws-sdk/client-ecs"); //not working
-//no sdk for EFS
-var EKS = require ("@aws-sdk/client-eks"); //not working
-var ElastiCache = require ("@aws-sdk/client-elasticache");
-var ElasticBeanstalk = require ("@aws-sdk/client-elastic-beanstalk");
-//no sdk for ElasticTranscoder
-var ELB = require ("@aws-sdk/client-elastic-load-balancing"); //ELB Not working
-var ELBv2 = require ("@aws-sdk/client-elastic-load-balancing-v2"); //ELBv2 not working
-var EMR = require ("@aws-sdk/client-emr"); //not working hits call 1
-//no sdk for EventBridge
-//no sdk for finspace
-var Firehose = require ("@aws-sdk/client-firehose"); //deliveryStreamEncrypted not working  ... firehouseEncrypted working
-//no sdk for forecast
-//no sdk for frauddetector
-//no sdk for fsx
-//no sdk for glue
+var ClientConnect = require ("@aws-sdk/client-connect"); //update hit call to line 357 KMS List keys
+var DevOpsGuru = require ("@aws-sdk/client-devops-guru"); //update UNKNOWN not authorized
+var DMS = require ("@aws-sdk/client-database-migration-service"); //update autoMinorVersionUpgrade not working
+var DocDB = require ("@aws-sdk/client-docdb"); //update working
+var DynamoDB = require ("@aws-sdk/client-dynamodb"); //update working
+var EC2 = require('@aws-sdk/client-ec2'); //update UNKNOWN //EC2Client DescribeImagesCommand not workign
+var ECR = require ("@aws-sdk/client-ecr"); //updated working
+var ECS = require ("@aws-sdk/client-ecs"); //update working
+var EFS = require ("@aws-sdk/client-efs"); //update working
+var EKS = require ("@aws-sdk/client-eks"); //update some working
+var ElastiCache = require ("@aws-sdk/client-elasticache"); //update working
+var ElasticBeanstalk = require ("@aws-sdk/client-elastic-beanstalk"); //update working
+var ElasticTranscoder = require ("@aws-sdk/client-elastic-transcoder"); //update working
+var ELB = require ("@aws-sdk/client-elastic-load-balancing"); // update ELB Not working
+var ELBv2 = require ("@aws-sdk/client-elastic-load-balancing-v2"); //update ELBv2 not working
+var EMR = require ("@aws-sdk/client-emr"); //update working
+var EventBridge = require ("@aws-sdk/client-eventbridge"); //update working
+var Finspace = require ("@aws-sdk/client-finspace")//update working
+var Firehose = require ("@aws-sdk/client-firehose"); //update working
+var ForecastService = require ("@aws-sdk/client-forecast");//update not working
+var FraudDetector = require ("@aws-sdk/client-frauddetector");//update working
+var FSx = require ("@aws-sdk/client-fsx");//update working
+var Glue = require ("@aws-sdk/client-glue");//update working
+///***next 25 before committing */
 //nosdk for gludedatabrew
 var GuardDuty = require ("@aws-sdk/client-guardduty"); //noActiveFindings not working
 //no sdk for healthlake
