@@ -16,13 +16,113 @@
  - callback: Function to call when the collection is complete
  *********************/
 
-const {EC2} = require('@aws-sdk/client-ec2');
+
 var async = require('async');
 var helpers = require(__dirname + '/../../helpers/aws');
 var collectors = require(__dirname + '/../../collectors/aws');
-var collectData = require(__dirname + '/../../helpers/shared.js');
-const { IAMClient, ListGroupsCommand} = require('@aws-sdk/client-iam');
-const { ACMClient, ListCertificatesCommand } = require("@aws-sdk/client-acm");
+var collectData = require(__dirname + '/../../helpers/shared.js')
+///WALKED THROUGH ALL PLUGINS AND RAN THE FIRST PLUGIN IN EACH FOLDER
+//for those not working we will need to click on each plugin and look at the service needs.
+//for those with no SDK test, we will need to look at the api call and see if they have moved to another sdk
+//prioritize fixing call 1 issues
+var AccessAnalyzer = require("@aws-sdk/client-accessanalyzer");
+var ACM = require("@aws-sdk/client-acm"); //missing package
+var APIGateway = require ("@aws-sdk/client-api-gateway");
+var Appflow = require ("@aws-sdk/client-appflow"); //missing package //not working
+var AppMesh = require ("@aws-sdk/client-app-mesh");
+//no sdk test run for appruner
+//not sdk test for athena
+//no sdk tesst for auditmanager
+var AutoScaling = require ("@aws-sdk/client-auto-scaling"); //not sure what uses this
+//no sdk tests for backup
+//no sdk tests for bedrock
+//no sdk tests for cloudformation
+var CloudFront = require ("@aws-sdk/client-cloudfront"); //unable to obtain data
+var CloudTrail = require ("@aws-sdk/client-cloudtrail"); //not working
+var CloudWatch = require ("@aws-sdk/client-cloudwatch"); //not working
+var CloudWatchLogs = require ("@aws-sdk/client-cloudwatch-logs");//missing package **in call 1
+var CodeBuild = require ("@aws-sdk/client-codebuild"); //not working
+//no sdk tests for coderartifact
+//no coebuildservice
+//no sdk tests for codepipeline
+//no sdk tests for codestar
+//no sdk tests for CognitoIdentityServiceProvider
+//no sdk tests for Comprehend
+//no sdk for computeoptimizer
+//no sdk for configservice
+var ClientConnect = require ("@aws-sdk/client-connect"); //not sure what uses this
+//no sdk for connect
+//no sdk for DevOpsGuru
+//no sdk for DMS
+//no sdk for DocDB
+var DynamoDB = require ("@aws-sdk/client-dynamodb"); //notworking //no sdk for DAXClusterEncryption
+var EC2 = require('@aws-sdk/client-ec2'); //followup calls failed
+//no sdk for ECR
+var ECS = require ("@aws-sdk/client-ecs"); //not working
+//no sdk for EFS
+var EKS = require ("@aws-sdk/client-eks"); //not working
+var ElastiCache = require ("@aws-sdk/client-elasticache");
+var ElasticBeanstalk = require ("@aws-sdk/client-elastic-beanstalk");
+//no sdk for ElasticTranscoder
+var ELB = require ("@aws-sdk/client-elastic-load-balancing"); //ELB Not working
+var ELBv2 = require ("@aws-sdk/client-elastic-load-balancing-v2"); //ELBv2 not working
+var EMR = require ("@aws-sdk/client-emr"); //not working hits call 1
+//no sdk for EventBridge
+//no sdk for finspace
+var Firehose = require ("@aws-sdk/client-firehose"); //deliveryStreamEncrypted not working  ... firehouseEncrypted working
+//no sdk for forecast
+//no sdk for frauddetector
+//no sdk for fsx
+//no sdk for glue
+//nosdk for gludedatabrew
+var GuardDuty = require ("@aws-sdk/client-guardduty"); //noActiveFindings not working
+//no sdk for healthlake
+var IAM = require('@aws-sdk/client-iam');
+//nosdk for imagebuilder
+//nosdk for iotsitewase
+//nosdk for kendra
+var Kinesis = require ("@aws-sdk/client-kinesis"); //kinesis list streams not working //kinesisencrypted workscccccccc
+//nosdk for kinesisvideo
+var KMS = require ("@aws-sdk/client-kms"); //not working hit call 1
+//no sdk for lambda
+var LEX = require ("@aws-sdk/client-lex-models-v2"); //hit call 1
+//nosdk for location
+var Lookout = require ("@aws-sdk/client-lookoutvision"); //hit call 1
+var ManagedBlockChain = require ("@aws-sdk/client-managedblockchain"); //hit call 1
+//memorydb
+//mq
+//msk
+var MWAA = require ("@aws-sdk/client-mwaa"); //hit call 1
+//neptune
+//opensearch
+var OpenSearchServerless = require ("@aws-sdk/client-opensearchserverless"); //hit KMS call 1
+//organizations
+//proton
+//qldb
+var RDS = require ("@aws-sdk/client-rds"); 
+//redshift
+//route53
+var S3 = require ("@aws-sdk/client-s3"); 
+//s3glacier
+var S3Control = require ("@aws-sdk/client-s3-control"); //not sure what uses this
+//sagemaker
+//secretsmanager
+//securityhub
+var SES = require ("@aws-sdk/client-ses"); //uses call 1
+//shield
+//sns
+var SQS = require ("@aws-sdk/client-sqs"); //cross account needs organizations service... sqsEncrypted uses call 1
+var SSM = require ("@aws-sdk/client-ssm"); //uses call 1
+var STS = require ("@aws-sdk/client-sts"); //not directly run as a plugin
+var Support = require ("@aws-sdk/client-support"); //not directly run as a plugin
+//timestreamwrite
+//transfer
+//translate
+var WAFRegional = require ("@aws-sdk/client-waf-regional"); //waf:wafInUse called but not finishing
+var WAFV2 = require ("@aws-sdk/client-wafv2"); //hit call 1
+//workspaces ...uses STS:getCallerIdentity .. not sure where WorkSpaces:describeWorkspacesConnectionStatus is
+//xray
+
 
 const { Agent } = require("https");
 const { Agent: HttpAgent } = require("http");
@@ -67,7 +167,7 @@ var collect = function(AWSConfig, settings, callback) {
     AWSConfig.retryDelayOptions = {
         base: 100
     };
-
+    
     var regions = helpers.regions(settings);
 
     var collection = {};
@@ -77,7 +177,7 @@ var collect = function(AWSConfig, settings, callback) {
 
     let runApiCalls = [];
 
-    var AWSEC2 = new EC2(AWSConfig);
+    var AWSEC2 = new EC2.EC2(AWSConfig);
 
     var params = {
         AllRegions: true
@@ -162,7 +262,9 @@ var collect = function(AWSConfig, settings, callback) {
                     } else {
                         console.log(serviceName)
 
-                        var executor = new ACMClient({});
+                        var executor = eval("new "+serviceName+"."+serviceName+"Client({})");
+                        //new IAM.IAMClient({});
+                        // eval("new "+serviceName+"."+serviceName+"Client({})");
                         executor.middlewareStack.add((next,context)=>async(args)=>{
                             console.log("AWS SDK context", context.clientName, context.commandName);
                             console.log("AWS SDK request input", args.input);
@@ -273,10 +375,10 @@ var collect = function(AWSConfig, settings, callback) {
                                     }
                                 }, function(cb) {
                                     console.log("call 248");
-                                    const command = new ListCertificatesCommand({
-                                      });
                                     
-                                  executor.send(command,function(err, data) {
+                                  className = callKey[0].toUpperCase()+callKey.slice(1);
+                                  console.log("new "+serviceName+"."+className+"Command();")
+                                  executor.send(eval("new "+serviceName+"."+className+"Command();"),function(err, data) {
                                         return cb(err, data);
                                   });
                                  
@@ -373,7 +475,8 @@ var collect = function(AWSConfig, settings, callback) {
                                     }
                                 });
                             } else {
-                                var executor = new AWS[serviceName](LocalAWSConfig);
+                                var executor = eval("new "+serviceName+"."+serviceName+"Client({})");
+                                //AWS[serviceName](LocalAWSConfig);
 
                                 if (!collection[callObj.reliesOnService][callObj.reliesOnCall][LocalAWSConfig.region] || !collection[callObj.reliesOnService][callObj.reliesOnCall][LocalAWSConfig.region].data) {
                                     return regionCb();
@@ -404,17 +507,23 @@ var collect = function(AWSConfig, settings, callback) {
                                             return helpers.collectRateError(err, rateError);
                                         }
                                     }, function(cb) {
-                                        executor[callKey](filter, function(err, data) {
-                                            if (helpers.collectRateError(err, rateError)) {
-                                                return cb(err);
-                                            } else if (err) {
-                                                collection[serviceLower][callKey][LocalAWSConfig.region][dep[callObj.filterValue]].err = err;
-                                                helpers.logError(serviceLower, callKey, region, err, errors, apiCallErrors, apiCallTypeErrors, totalApiCallErrors, errorSummary, errorTypeSummary, debugMode);
-                                                return cb();
-                                            } else {
-                                                collection[serviceLower][callKey][LocalAWSConfig.region][dep[callObj.filterValue]].data = data;
-                                                return cb();
-                                            }
+                                        console.log("call 410");
+
+                                        className = callKey[0].toUpperCase()+callKey.slice(1);
+                                        command = eval("new "+serviceName+"."+className+"Command();");
+                                        command.input=filter;
+                                        executor.send(command,function(err, data) {
+
+                                        if (helpers.collectRateError(err, rateError)) {
+                                            return cb(err);
+                                        } else if (err) {
+                                            collection[serviceLower][callKey][LocalAWSConfig.region][dep[callObj.filterValue]].err = err;
+                                            helpers.logError(serviceLower, callKey, region, err, errors, apiCallErrors, apiCallTypeErrors, totalApiCallErrors, errorSummary, errorTypeSummary, debugMode);
+                                            return cb();
+                                        } else {
+                                            collection[serviceLower][callKey][LocalAWSConfig.region][dep[callObj.filterValue]].data = data;
+                                            return cb();
+                                        }
                                         });
                                     }, function() {
 
