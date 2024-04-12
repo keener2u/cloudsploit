@@ -24,32 +24,32 @@ var collectData = require(__dirname + '/../../helpers/shared.js')
 ///WALKED THROUGH ALL PLUGINS AND RAN THE FIRST PLUGIN IN EACH FOLDER
 //for those not working we will need to click on each plugin and look at the service needs.
 //for those with no SDK test, we will need to look at the api call and see if they have moved to another sdk
-//prioritize fixing call 1 issues
-var AccessAnalyzer = require("@aws-sdk/client-accessanalyzer");
-var ACM = require("@aws-sdk/client-acm"); //missing package
-var APIGateway = require ("@aws-sdk/client-api-gateway");
-var Appflow = require ("@aws-sdk/client-appflow"); //missing package //not working
-var AppMesh = require ("@aws-sdk/client-app-mesh");
-//no sdk test run for appruner
-//not sdk test for athena
-//no sdk tesst for auditmanager
-var AutoScaling = require ("@aws-sdk/client-auto-scaling"); //not sure what uses this
-//no sdk tests for backup
-//no sdk tests for bedrock
-//no sdk tests for cloudformation
-var CloudFront = require ("@aws-sdk/client-cloudfront"); //unable to obtain data
-var CloudTrail = require ("@aws-sdk/client-cloudtrail"); //not working
-var CloudWatch = require ("@aws-sdk/client-cloudwatch"); //not working
-var CloudWatchLogs = require ("@aws-sdk/client-cloudwatch-logs");//missing package **in call 1
-var CodeBuild = require ("@aws-sdk/client-codebuild"); //not working
-//no sdk tests for coderartifact
-//no coebuildservice
-//no sdk tests for codepipeline
-//no sdk tests for codestar
-//no sdk tests for CognitoIdentityServiceProvider
-//no sdk tests for Comprehend
-//no sdk for computeoptimizer
-//no sdk for configservice
+//prioritize fixing call 1 issues **DONE**
+//call 1 now called "call 347"
+var AccessAnalyzer = require("@aws-sdk/client-accessanalyzer"); //update working
+var ACM = require("@aws-sdk/client-acm"); //missing package //udpate working
+var APIGateway = require ("@aws-sdk/client-api-gateway"); //update working
+var Appflow = require ("@aws-sdk/client-appflow"); //missing package //not working //update working
+var AppMesh = require ("@aws-sdk/client-app-mesh"); //update working
+var AppRunner = require ("@aws-sdk/client-apprunner"); //apprunner works //update working
+var Athena = require ("@aws-sdk/client-athena"); //update working
+var AuditManager = require ("@aws-sdk/client-auditmanager"); //update UNKOWN Results
+var AutoScaling = require ("@aws-sdk/client-auto-scaling");//update appTierIamRole hit call 2! new call 357 //no results
+var Backup = require ("@aws-sdk/client-backup"); //update working
+var Bedrock = require ("@aws-sdk/client-bedrock"); //update customModelHasTags not working //privateCustomModel works
+var CloudFormation = require ("@aws-sdk/client-cloudformation"); //update working //simple works cloudformationAdminPriviliges not SEEMS to be a lot of calls
+var CloudFront = require ("@aws-sdk/client-cloudfront"); //update unable to obtain data, status UNKNOWN RESULTS
+var CloudTrail = require ("@aws-sdk/client-cloudtrail"); //update working
+var CloudWatch = require ("@aws-sdk/client-cloudwatch"); //update working
+var CloudWatchLogs = require ("@aws-sdk/client-cloudwatch-logs");// update working
+var CodeArtifact = require ("@aws-sdk/client-codeartifact");// update not working
+var CodeBuild = require ("@aws-sdk/client-codebuild"); //update unable to obtain data, status UNKNOWN RESULTS
+var CodePipeline = require ("@aws-sdk/client-codepipeline");//update working
+var CodeStar = require ("@aws-sdk/client-codestar");//update codestarValidRepoProverds creates UNKNOWN RESULTS
+var CognitoIdentityServiceProvider = require("@aws-sdk/client-cognito-identity-provider");//update not working
+var Comprehend = require("@aws-sdk/client-comprehend") //update worked
+var ComputeOptimizer = require("@aws-sdk/client-compute-optimizer") //update UNKNOWN status for compute optimizer
+var ConfigService = require("@aws-sdk/client-config-service") //update working
 var ClientConnect = require ("@aws-sdk/client-connect"); //not sure what uses this
 //no sdk for connect
 //no sdk for DevOpsGuru
@@ -346,12 +346,14 @@ var collect = function(AWSConfig, settings, callback) {
                                         return helpers.collectRateError(err, rateError);
                                     }
                                 }, function(cb) {
-                                    console.log("call 1");
-                                    executor[callKey](localParams, function(err, data) {
+                                    console.log("call 349");
+                                    className = callKey[0].toUpperCase()+callKey.slice(1);
+                                  console.log("new "+serviceName+"."+className+"Command();")
+                                  executor.send(eval("new "+serviceName+"."+className+"Command();"),function(err, data) {
                                         return cb(err, data);
-                                    });
+                                  });
                                 }, function(err, data) {
-                                    console.log("call 2");
+                                    console.log("call 357");
                                     executorCb(err, data);
                                 });
                             } else {
