@@ -27,6 +27,7 @@ var collectData = require(__dirname + '/../../helpers/shared.js')
 //prioritize fixing call 1 issues **DONE**
 //call 1 now called "call 347"
 //call 2 now called "call357"
+//debug plugins with call2/357 that are having issues
 var AccessAnalyzer = require("@aws-sdk/client-accessanalyzer"); //update working
 var ACM = require("@aws-sdk/client-acm"); //missing package //udpate working
 var APIGateway = require ("@aws-sdk/client-api-gateway"); //update working
@@ -99,30 +100,29 @@ var OpenSearchServerless = require ("@aws-sdk/client-opensearchserverless"); //u
 var Organizations = require ("@aws-sdk/client-organizations");//update status UNKNOWN
 var Proton = require ("@aws-sdk/client-proton"); //update uknown
 var QLDB = require ("@aws-sdk/client-qldb");//update worked
-//******COMMIT THE NEXT 25 */
-var RDS = require ("@aws-sdk/client-rds"); 
-//redshift
-//route53
-var S3 = require ("@aws-sdk/client-s3"); 
-//s3glacier
+var RDS = require ("@aws-sdk/client-rds"); //update worked
+var Redshift = require ("@aws-sdk/client-redshift");//update worked
+var Route53 = require ("@aws-sdk/client-route-53");//update worked
+var S3 = require ("@aws-sdk/client-s3"); //update worked
+var Glacier = require ("@aws-sdk/client-glacier"); //update worked s3glacier
 var S3Control = require ("@aws-sdk/client-s3-control"); //not sure what uses this
-//sagemaker
-//secretsmanager
-//securityhub
-var SES = require ("@aws-sdk/client-ses"); //uses call 1
-//shield
-//sns
-var SQS = require ("@aws-sdk/client-sqs"); //cross account needs organizations service... sqsEncrypted uses call 1
-var SSM = require ("@aws-sdk/client-ssm"); //uses call 1
+var SageMaker = require("@aws-sdk/client-sagemaker") //updated worked
+var SecretsManager = require("@aws-sdk/client-secrets-manager")//update worked
+var SecurityHub = require("@aws-sdk/client-securityhub") //update seems to work but need subscription to check
+var SES = require ("@aws-sdk/client-ses"); //update works //uses call 1
+var Shield = require ("@aws-sdk/client-shield"); //update shield works but need subscription to test
+var SNS = require ("@aws-sdk/client-sns");//update works
+var SQS = require ("@aws-sdk/client-sqs"); //update works , uses call 1
+var SSM = require ("@aws-sdk/client-ssm"); //update works, uses call 1
 var STS = require ("@aws-sdk/client-sts"); //not directly run as a plugin
 var Support = require ("@aws-sdk/client-support"); //not directly run as a plugin
-//timestreamwrite
-//transfer
-//translate
-var WAFRegional = require ("@aws-sdk/client-waf-regional"); //waf:wafInUse called but not finishing
-var WAFV2 = require ("@aws-sdk/client-wafv2"); //hit call 1
-//workspaces ...uses STS:getCallerIdentity .. not sure where WorkSpaces:describeWorkspacesConnectionStatus is
-//xray
+var TimestreamWrite = require ("@aws-sdk/client-timestream-write");//update data UKNOWN hits KMS List key and 357/call 2
+var Transfer = require ("@aws-sdk/client-transfer");//update works
+var Translate = require ("@aws-sdk/client-translate");///update works
+var WAFRegional = require ("@aws-sdk/client-waf-regional");// update waf:wafInUse called but not finishing //WAFRegional:listWebACLs invoked
+var WAFV2 = require ("@aws-sdk/client-wafv2"); //update wafv2InUse gets data Uknown, lookks like new request type for ListWebACLsRequest in call 1
+var WorkSpaces = require("@aws-sdk/client-workspaces")//update workspaces works
+var xray = require("@aws-sdk/client-xray")//update hit 357 with issues of KMS:listkeys xray
 
 
 const { Agent } = require("https");
