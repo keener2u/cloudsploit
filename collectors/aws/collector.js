@@ -26,6 +26,7 @@ var collectData = require(__dirname + '/../../helpers/shared.js')
 //for those with no SDK test, we will need to look at the api call and see if they have moved to another sdk
 //prioritize fixing call 1 issues **DONE**
 //call 1 now called "call 347"
+//call 2 now called "call357"
 var AccessAnalyzer = require("@aws-sdk/client-accessanalyzer"); //update working
 var ACM = require("@aws-sdk/client-acm"); //missing package //udpate working
 var APIGateway = require ("@aws-sdk/client-api-gateway"); //update working
@@ -72,33 +73,33 @@ var Firehose = require ("@aws-sdk/client-firehose"); //update working
 var ForecastService = require ("@aws-sdk/client-forecast");//update not working
 var FraudDetector = require ("@aws-sdk/client-frauddetector");//update working
 var FSx = require ("@aws-sdk/client-fsx");//update working
-var Glue = require ("@aws-sdk/client-glue");//update working
-///***next 25 before committing */
-//nosdk for gludedatabrew
-var GuardDuty = require ("@aws-sdk/client-guardduty"); //noActiveFindings not working
-//no sdk for healthlake
-var IAM = require('@aws-sdk/client-iam');
-//nosdk for imagebuilder
-//nosdk for iotsitewase
-//nosdk for kendra
-var Kinesis = require ("@aws-sdk/client-kinesis"); //kinesis list streams not working //kinesisencrypted workscccccccc
-//nosdk for kinesisvideo
-var KMS = require ("@aws-sdk/client-kms"); //not working hit call 1
-//no sdk for lambda
-var LEX = require ("@aws-sdk/client-lex-models-v2"); //hit call 1
-//nosdk for location
-var Lookout = require ("@aws-sdk/client-lookoutvision"); //hit call 1
-var ManagedBlockChain = require ("@aws-sdk/client-managedblockchain"); //hit call 1
-//memorydb
-//mq
-//msk
-var MWAA = require ("@aws-sdk/client-mwaa"); //hit call 1
-//neptune
-//opensearch
-var OpenSearchServerless = require ("@aws-sdk/client-opensearchserverless"); //hit KMS call 1
-//organizations
-//proton
-//qldb
+var Glue = require ("@aws-sdk/client-glue");//update workingg
+var DataBrew = require ("@aws-sdk/client-databrew");//update working gludedatabrew
+var GuardDuty = require ("@aws-sdk/client-guardduty"); //update working
+var HealthLake = require ("@aws-sdk/client-healthlake"); //update working
+var IAM = require("@aws-sdk/client-iam");//update acessKeysExtra not working
+var imagebuilder = require("@aws-sdk/client-imagebuilder");//update not working
+var IoTSiteWise = require("@aws-sdk/client-iotsitewise");//update hit 357/call 2 data UNKOWN
+var Kendra = require("@aws-sdk/client-kendra");//one working, one UKNOWN
+var Kinesis = require ("@aws-sdk/client-kinesis"); //updated working
+var KinesisVideo = require ("@aws-sdk/client-kinesis-video");//update working
+var KMS = require ("@aws-sdk/client-kms"); //updated hit call 2 /357
+var Lambda = require ("@aws-sdk/client-lambda");//update working
+var LEX = require ("@aws-sdk/client-lex-models-v2");//update hitting call 357
+var Location = require ("@aws-sdk/client-location");//update hitting 357 data UKNOWN
+var Lookout = require ("@aws-sdk/client-lookoutvision"); //hit call 1 //update hit 357/call 2
+var ManagedBlockChain = require ("@aws-sdk/client-managedblockchain"); //updated hit call 357
+var MemoryDB = require ("@aws-sdk/client-memorydb");//updated working
+var MQ = require ("@aws-sdk/client-mq");//update not working
+var Kafka = require ("@aws-sdk/client-kafka");//updated working MSK
+var MWAA = require ("@aws-sdk/client-mwaa"); //updated recursive call never finsishes stuck in 357
+var Neptune = require ("@aws-sdk/client-neptune"); //updated works
+var OpenSearch = require ("@aws-sdk/client-opensearch"); //updated works
+var OpenSearchServerless = require ("@aws-sdk/client-opensearchserverless"); //update hit kms cal 357 and creates data Unknown
+var Organizations = require ("@aws-sdk/client-organizations");//update status UNKNOWN
+var Proton = require ("@aws-sdk/client-proton"); //update uknown
+var QLDB = require ("@aws-sdk/client-qldb");//update worked
+//******COMMIT THE NEXT 25 */
 var RDS = require ("@aws-sdk/client-rds"); 
 //redshift
 //route53
@@ -348,8 +349,8 @@ var collect = function(AWSConfig, settings, callback) {
                                 }, function(cb) {
                                     console.log("call 349");
                                     className = callKey[0].toUpperCase()+callKey.slice(1);
-                                  console.log("new "+serviceName+"."+className+"Command();")
-                                  executor.send(eval("new "+serviceName+"."+className+"Command();"),function(err, data) {
+                                   console.log("new "+serviceName+"."+className+"Command();")
+                                    executor.send(eval("new "+serviceName+"."+className+"Command();"),function(err, data) {
                                         return cb(err, data);
                                   });
                                 }, function(err, data) {
