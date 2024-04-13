@@ -28,6 +28,7 @@ var collectData = require(__dirname + '/../../helpers/shared.js')
 //call 1 now called "call 347"
 //call 2 now called "call357"
 //debug plugins with call2/357 that are having issues
+//*refactor debug calls to use a (debug) logging library setup debug namespaces https://dev.to/aderchox/what-is-the-debug-environment-variable-in-nodejs-and-how-to-use-it-3fal
 var AccessAnalyzer = require("@aws-sdk/client-accessanalyzer"); //update working
 var ACM = require("@aws-sdk/client-acm"); //missing package //udpate working
 var APIGateway = require ("@aws-sdk/client-api-gateway"); //update working
