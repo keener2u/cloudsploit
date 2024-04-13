@@ -31,6 +31,7 @@ var collectData = require(__dirname + '/../../helpers/shared.js')
 var AccessAnalyzer = require("@aws-sdk/client-accessanalyzer"); //update working
 var ACM = require("@aws-sdk/client-acm"); //missing package //udpate working
 var APIGateway = require ("@aws-sdk/client-api-gateway"); //update working
+var AppConfig = require ("@aws-sdk/client-appconfig");
 var Appflow = require ("@aws-sdk/client-appflow"); //missing package //not working //update working
 var AppMesh = require ("@aws-sdk/client-app-mesh"); //update working
 var AppRunner = require ("@aws-sdk/client-apprunner"); //update working
