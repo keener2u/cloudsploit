@@ -3,16 +3,12 @@
 
 module.exports = {
     aws : {
-        /*
         'accessAnalyzerEnabled'         : require(__dirname + '/plugins/aws/accessanalyzer/accessAnalyzerEnabled.js'),
-        
         'accessAnalyzerActiveFindings'  : require(__dirname + '/plugins/aws/accessanalyzer/accessAnalyzerActiveFindings.js'),
 
         'acmValidation'                 : require(__dirname + '/plugins/aws/acm/acmValidation.js'),
         'acmCertificateExpiry'          : require(__dirname + '/plugins/aws/acm/acmCertificateExpiry.js'),
-
         'acmSingleDomainNameCertificate': require(__dirname + '/plugins/aws/acm/acmSingleDomainNameCertificate.js'),
-
         //'acmCertificateHasTags'         : require(__dirname + '/plugins/aws/acm/acmCertificateHasTags.js'),
 
         'appmeshVGAccessLogging'        : require(__dirname + '/plugins/aws/appmesh/appmeshVGAccessLogging.js'), //makes it to an error why?
@@ -23,7 +19,6 @@ module.exports = {
         'apigatewayContentEncoding'     : require(__dirname + '/plugins/aws/apigateway/apigatewayContentEncoding.js'),
         'apigatewayTracingEnabled'      : require(__dirname + '/plugins/aws/apigateway/apigatewayTracingEnabled.js'),
         'apigatewayWafEnabled'          : require(__dirname + '/plugins/aws/apigateway/apigatewayWafEnabled.js'),
-
         'detailedCloudWatchMetrics'     : require(__dirname + '/plugins/aws/apigateway/detailedCloudWatchMetrics.js'),
         'apigatewayClientCertificate'   : require(__dirname + '/plugins/aws/apigateway/apigatewayClientCertificate.js'),
         'apigatewayResponseCaching'     : require(__dirname + '/plugins/aws/apigateway/apigatewayResponseCaching.js'),
@@ -41,18 +36,15 @@ module.exports = {
         'asgActiveNotifications'        : require(__dirname + '/plugins/aws/autoscaling/asgActiveNotifications.js'),
         'asgCooldownPeriod'             : require(__dirname + '/plugins/aws/autoscaling/asgCooldownPeriod.js'),
         'emptyASG'                      : require(__dirname + '/plugins/aws/autoscaling/emptyASG.js'),
-
         //'sameAzElb'                     : require(__dirname + '/plugins/aws/autoscaling/sameAzElb.js'),
         //'asgMissingELB'                 : require(__dirname + '/plugins/aws/autoscaling/asgMissingELB.js'),
-    //    'webTierAsgAssociatedElb'       : require(__dirname + '/plugins/aws/autoscaling/webTierAsgAssociatedElb.js'),
+        //'webTierAsgAssociatedElb'       : require(__dirname + '/plugins/aws/autoscaling/webTierAsgAssociatedElb.js'),
         'elbHealthCheckActive'          : require(__dirname + '/plugins/aws/autoscaling/elbHealthCheckActive.js'),
         'asgSuspendedProcesses'         : require(__dirname + '/plugins/aws/autoscaling/asgSuspendedProcesses.js'),
-       // 'appTierAsgApprovedAmi'         : require(__dirname + '/plugins/aws/autoscaling/appTierAsgApprovedAmi.js'),
-       // 'webTierAsgApprovedAmi'         : require(__dirname + '/plugins/aws/autoscaling/webTierAsgApprovedAmi.js'),
-       // 'appTierAsgCloudwatchLogs'      : require(__dirname + '/plugins/aws/autoscaling/appTierAsgCloudwatchLogs.js'),
-       // 'webTierAsgCloudwatchLogs'      : require(__dirname + '/plugins/aws/autoscaling/webTierAsgCloudwatchLogs.js'),
-  
-           
+        //'appTierAsgApprovedAmi'         : require(__dirname + '/plugins/aws/autoscaling/appTierAsgApprovedAmi.js'),
+        //'webTierAsgApprovedAmi'         : require(__dirname + '/plugins/aws/autoscaling/webTierAsgApprovedAmi.js'),
+        //'appTierAsgCloudwatchLogs'      : require(__dirname + '/plugins/aws/autoscaling/appTierAsgCloudwatchLogs.js'),
+        //'webTierAsgCloudwatchLogs'      : require(__dirname + '/plugins/aws/autoscaling/webTierAsgCloudwatchLogs.js'),
         'asgMissingSecurityGroups'      : require(__dirname + '/plugins/aws/autoscaling/asgMissingSecurityGroups.js'),
         //'webTierIamRole'                : require(__dirname + '/plugins/aws/autoscaling/webTierIamRole.js'),
         //'appTierIamRole'                : require(__dirname + '/plugins/aws/autoscaling/appTierIamRole.js'),
@@ -63,19 +55,18 @@ module.exports = {
 
         'customModelInVpc'              :require(__dirname + '/plugins/aws/bedrock/customModelInVpc.js'),
         'privateCustomModel'            :require(__dirname + '/plugins/aws/bedrock/privateCustomModel.js'),
-//        'customModelHasTags'            :require(__dirname + '/plugins/aws/bedrock/customModelHasTags.js'), //SEEMS LIKE PROGRAMS WITH HAS TAGS HAS ISSUES ITS EC2 DESCRIBEREGIONS
+        //'customModelHasTags'            :require(__dirname + '/plugins/aws/bedrock/customModelHasTags.js'), //SEEMS LIKE PROGRAMS WITH HAS TAGS HAS ISSUES ITS EC2 DESCRIBEREGIONS
         'modelInvocationLoggingEnabled' :require(__dirname + '/plugins/aws/bedrock/modelInvocationLoggingEnabled.js'),
         'customModelEncrypted'          :require(__dirname + '/plugins/aws/bedrock/customModelEncryptionEnabled.js'),
 
- //       'infraConfigNotificationEnabled': require(__dirname + '/plugins/aws/imagebuilder/infraConfigNotificationEnabled.js'),
+        //'infraConfigNotificationEnabled': require(__dirname + '/plugins/aws/imagebuilder/infraConfigNotificationEnabled.js'),
+
         'publicS3Origin'                : require(__dirname + '/plugins/aws/cloudfront/publicS3Origin.js'),
- 
         'secureOrigin'                  : require(__dirname + '/plugins/aws/cloudfront/secureOrigin.js'),
         'insecureProtocols'             : require(__dirname + '/plugins/aws/cloudfront/insecureProtocols.js'),
         'cloudfrontHttpsOnly'           : require(__dirname + '/plugins/aws/cloudfront/cloudfrontHttpsOnly.js'),
         'cloudfrontLoggingEnabled'      : require(__dirname + '/plugins/aws/cloudfront/cloudfrontLoggingEnabled.js'),
         'cloudfrontWafEnabled'          : require(__dirname + '/plugins/aws/cloudfront/cloudfrontWafEnabled.js'),
-
         'cloudfrontFieldLevelEncryption': require(__dirname + '/plugins/aws/cloudfront/cloudfrontFieldLevelEncryption.js'),
         'cloudfrontInUse'               : require(__dirname + '/plugins/aws/cloudfront/cloudfrontInUse.js'),
         'enableOriginFailOver'          : require(__dirname + '/plugins/aws/cloudfront/enableOriginFailOver.js'),
@@ -92,7 +83,6 @@ module.exports = {
         'plainTextParameters'           : require(__dirname + '/plugins/aws/cloudformation/plainTextParameters.js'),
         'stackFailedStatus'             : require(__dirname + '/plugins/aws/cloudformation/stackFailedStatus.js'),
         'driftDetection'                :  require(__dirname + '/plugins/aws/cloudformation/driftDetection.js'),
-
         'stackTerminationProtection'    : require(__dirname + '/plugins/aws/cloudformation/stackTerminationProtection.js'),
         'stackNotifications'            : require(__dirname + '/plugins/aws/cloudformation/stackNotifications.js'),
         //'cloudformationAdminPriviliges' : require(__dirname + '/plugins/aws/cloudformation/cloudformationAdminPriviliges.js'),
@@ -112,7 +102,6 @@ module.exports = {
         'cloudtrailS3Bucket'            : require(__dirname + '/plugins/aws/cloudtrail/cloudtrailS3Bucket.js'),
         'globalLoggingDuplicated'       : require(__dirname + '/plugins/aws/cloudtrail/globalLoggingDuplicated.js'),
         'cloudtrailNotificationsEnabled': require(__dirname + '/plugins/aws/cloudtrail/cloudtrailNotificationsEnabled.js'),
-
         'cloudtrailHasTags'             : require(__dirname + '/plugins/aws/cloudtrail/cloudtrailHasTags.js'),
  
         'ec2InstancesOptimized'         : require(__dirname + '/plugins/aws/computeoptimizer/ec2InstancesOptimized.js'),
@@ -693,7 +682,7 @@ module.exports = {
 //        'datasetExportEncrypted'        : require(__dirname + '/plugins/aws/forecast/datasetExportEncrypted.js'),
 
         'fsxFileSystemEncrypted'        : require(__dirname + '/plugins/aws/fsx/fsxFileSystemEncrypted.js'),
-            end of tested plugins**/
+
         'wafv2InUse'                    : require(__dirname + '/plugins/aws/wafv2/wafv2InUse.js'),
         'wafv2CloudwatchMetricsEnabled' : require(__dirname + '/plugins/aws/wafv2/wafv2CloudwatchMetricsEnabled.js'),
         'aclRulesDefaultAction'         : require(__dirname + '/plugins/aws/wafv2/aclRulesDefaultAction.js'),
