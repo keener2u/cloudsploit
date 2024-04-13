@@ -55,6 +55,7 @@ var ConfigService = require("@aws-sdk/client-config-service") //update working
 var ClientConnect = require ("@aws-sdk/client-connect"); //update hit call to line 357 KMS List keys
 var DevOpsGuru = require ("@aws-sdk/client-devops-guru"); //update UNKNOWN not authorized
 var DMS = require ("@aws-sdk/client-database-migration-service"); //update autoMinorVersionUpgrade not working
+var DLM = require ("@aws-sdk/client-dlm");
 var DocDB = require ("@aws-sdk/client-docdb"); //update working
 var DynamoDB = require ("@aws-sdk/client-dynamodb"); //update working
 var EC2 = require('@aws-sdk/client-ec2'); //update UNKNOWN //EC2Client DescribeImagesCommand not workign
